@@ -46,7 +46,7 @@ class ConnectionManager:
         receiver_socket = self.active_connections.get(receiver_id)
         if receiver_socket:
             await receiver_socket.send_json({
-                "id": generate_random_string,
+                "id": generate_random_string(length=10),
                 "sender_id": sender_id,
                 "message": message
             })
