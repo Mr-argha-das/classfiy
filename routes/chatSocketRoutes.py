@@ -18,8 +18,17 @@ async def get_inbox(user_id: str, db: Session = Depends(get_db)):
 
     
     for convo in conversations:
-        other_user_id = convo.user1_id if convo.user2_id == user_id else convo.user2_id
+        other_user_id = ""
+        if int(user_id) == convo.user1_id:
+            other_user_id = convo.user2_id
+            print("pass1")
+        elif int(user_id) == convo.user2_id:
+            print("pass2")
+            other_user_id = convo.user1_id
+        print("================================")
+        print(f"user id: {other_user_id}")
         user = db.query(User).get(other_user_id)
+        print(user)
 
         last_msg = db.query(Message).get(convo.last_message_id)
         if last_msg:
