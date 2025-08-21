@@ -14,7 +14,7 @@ async def get_inbox(user_id: str, db: Session = Depends(get_db)):
     inbox_list = []
 
     if not conversations:
-        raise {"message": "Here is all Conversation", "inbox": inbox_list, "status": 200}
+        return {"message": "Here is all Conversation", "inbox": inbox_list, "status": 200}
 
     
     for convo in conversations:
