@@ -14,7 +14,7 @@ async def get_inbox(user_id: str, db: Session = Depends(get_db)):
     inbox_list = []
 
     if not conversations:
-        raise HTTPException(status_code=404, detail={"message": "Here is all Conversation", "inbox": inbox_list, "status": 200})
+        raise {"message": "Here is all Conversation", "inbox": inbox_list, "status": 200}
 
     
     for convo in conversations:
