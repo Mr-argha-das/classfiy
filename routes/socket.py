@@ -4,7 +4,8 @@ from sqlalchemy.orm import Session
 from db.database import get_db
 from models.messages import Conversation, Message
 from firebase_admin import credentials, messaging
-
+import random
+import string
 from models.userModels import User
 router = APIRouter()
 import firebase_admin
@@ -45,9 +46,15 @@ class ConnectionManager:
         receiver_socket = self.active_connections.get(receiver_id)
         if receiver_socket:
             await receiver_socket.send_json({
+                "id": generate_random_string,
                 "sender_id": sender_id,
                 "message": message
             })
+
+def generate_random_string(length=10):
+    characters = string.ascii_letters + string.digits  # A-Z, a-z, 0-9
+    random_string = ''.join(random.choice(characters) for _ in range(length))
+    return random_string
 
 manager = ConnectionManager()
 
