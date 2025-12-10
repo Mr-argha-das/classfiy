@@ -10,7 +10,7 @@ from models.userModels import User
 router = APIRouter()
 import firebase_admin
 
-cred = credentials.Certificate("./utils/mmp--mymarketplace-firebase-adminsdk-fbsvc-314a0c52e9.json")
+cred = credentials.Certificate("./utils/mmp--mymarketplace-firebase-adminsdk-fbsvc-a06c6563ef.json")
 firebase_admin.initialize_app(cred)
 
 class ConnectionManager:
@@ -86,7 +86,15 @@ def send_notification(token: str, title: str, body: str, id: int, fullname: str)
         # बाकी errors catch कर लो, ताकि code crash ना हो
         print(f"❌ Error sending notification to user {id}: {e}")
         return None
-    
+
+
+@router.post("/notif")
+async def send_test_notification():
+    response = send_notification("", "Test Notification", "This is a test notification.", 1, "Argh Das")
+    if response:
+        return {"message": "Notification sent", "response": response}
+    else:
+        return {"message": "Failed to send notification"}
 
 @router.websocket("/chat/ws/{user_id}")
 async def websocket_endpoint(websocket: WebSocket, user_id: str):

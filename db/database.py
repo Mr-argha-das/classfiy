@@ -1,12 +1,23 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-# Agar password blank hai (XAMPP default)
-DATABASE_URL = "mysql+pymysql://u174570443_arghadas:/0wRH6ph41M>@srv1334.hstgr.io:3306/u174570443_classifiy_py"
+DATABASE_URL = "mysql+pymysql://u739347814_educations:1LUdUDly~In@srv1882.hstgr.io:3306/u739347814_educations"
 
-engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(
+    DATABASE_URL,
+    echo=False,
+    pool_pre_ping=True,       # Fixes MySQL server has gone away
+    pool_recycle=280,         # Prevents idle timeout issues
+    pool_size=10,             # DB pool size
+    max_overflow=20           # Extra connections under load
+)
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine,
+    expire_on_commit=False    # Prevents stale session issues
+)
 
 Base = declarative_base()
 
