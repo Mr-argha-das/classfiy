@@ -16,7 +16,7 @@ router = APIRouter()
 
 if not firebase_admin._apps:
     cred = credentials.Certificate(
-        "./utils/mmp--mymarketplace-firebase-adminsdk-fbsvc-9ded522ab6.json"
+        "./utils/mmp--mymarketplace-firebase-adminsdk-fbsvc-035dfb94f3.json"
     )
     firebase_admin.initialize_app(cred)
 
