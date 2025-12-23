@@ -12,8 +12,8 @@ class Message(Base):
 
     id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
 
-    sender_id = Column(BIGINT(unsigned=True), ForeignKey("users.id"), nullable=False)
-    receiver_id = Column(BIGINT(unsigned=True), ForeignKey("users.id"), nullable=False)
+    sender_id = Column(BIGINT(unsigned=True), ForeignKey("customers.id"), nullable=False)
+    receiver_id = Column(BIGINT(unsigned=True), ForeignKey("customers.id"), nullable=False)
 
     message = Column(Text)
     timestamp = Column(DateTime, default=datetime.utcnow)
@@ -26,8 +26,8 @@ class Conversation(Base):
 
     id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
 
-    user1_id = Column(BIGINT(unsigned=True), ForeignKey("users.id"), nullable=False)
-    user2_id = Column(BIGINT(unsigned=True), ForeignKey("users.id"), nullable=False)
+    user1_id = Column(BIGINT(unsigned=True), ForeignKey("customers.id"), nullable=False)
+    user2_id = Column(BIGINT(unsigned=True), ForeignKey("customers.id"), nullable=False)
 
     last_message_id = Column(String(36), ForeignKey("messages_table.id"))
 

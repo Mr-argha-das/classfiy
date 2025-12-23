@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="Rohit_DB_ERD">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- employee -->
+        <mxCell id="emp" value="employee
+(emp_id PK)
+first_name
+middle_initial
+last_name
+region
+date_of_hire
+email" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="220" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- skill -->
+        <mxCell id="skill" value="skill
+(skill_id PK)
+description
+rate" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="300" y="40" width="200" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- employee_skill -->
+        <mxCell id="empskill" value="employee_skill
+(emp_id FK)
+(skill_id FK)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="540" y="40" width="220" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- customer -->
+        <mxCell id="customer" value="customer
+(customer_id PK)
+customer_name
+phone
+region" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="40" y="220" width="240" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- project -->
+        <mxCell id="project" value="project
+(project_id PK)
+customer_id FK
+project_name
+project_desc
+project_date
+budget
+actual_cost
+manager_emp_id FK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="320" y="220" width="280" height="160" as="geometry"/>
+        </mxCell>
+
+        <!-- plan -->
+        <mxCell id="plan" value="plan
+(plan_no PK)
+project_id FK
+plan_type
+start_date
+end_date" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="640" y="220" width="220" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- task -->
+        <mxCell id="task" value="task
+(task_id PK)
+plan_no FK
+task_desc
+start_date
+end_date
+employees_required" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="920" y="220" width="260" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- task_skill -->
+        <mxCell id="taskskill" value="task_skill
+(task_id FK)
+(skill_id FK)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="920" y="380" width="220" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- assignment -->
+        <mxCell id="assignment" value="assignment
+(assignment_id PK)
+emp_id FK
+task_id FK
+assign_start
+assign_end
+skill_id FK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="560" y="380" width="300" height="150" as="geometry"/>
+        </mxCell>
+
+        <!-- worklog -->
+        <mxCell id="worklog" value="worklog
+(worklog_id PK)
+assignment_id FK
+period_start
+period_end
+hours_total
+bill_no FK" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="320" y="380" width="200" height="130" as="geometry"/>
+        </mxCell>
+
+        <!-- bill -->
+        <mxCell id="bill" value="bill
+(bill_no PK)
+project_id FK
+bill_date
+amount" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="40" y="380" width="240" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges: FK relationships -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="emp" target="empskill">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="skill" target="empskill">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="customer" target="project">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="project" target="plan">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="plan" target="task">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="task" target="taskskill">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="task" target="assignment">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="emp" target="assignment">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="assignment" target="worklog">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="worklog" target="bill">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="project" target="bill">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#000000;" edge="1" parent="1" source="skill" target="taskskill">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

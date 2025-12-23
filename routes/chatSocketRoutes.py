@@ -47,7 +47,7 @@ async def get_inbox(user_id: str, db: Session = Depends(get_db)):
             "other_user": {
                 "_id": user.id,
                 "name": user.full_name,
-                "profilePick": user.profile_pic,
+                "profilePick": user.image,
                 "is_readed": last_msg.is_read if last_msg else False,
                 "sender_you": True if last_msg and int(last_msg.sender_id) == int(user_id) else False
             },
